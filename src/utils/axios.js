@@ -1,4 +1,4 @@
-import Axios from "axios";
+import Axios from 'axios'
 
 const apiConfig = {
     baseUrl: 'http://127.0.0.1:8000/api',

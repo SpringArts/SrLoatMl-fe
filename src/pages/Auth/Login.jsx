@@ -23,7 +23,7 @@ export default function Login() {
         onSuccess: (data) => {
             console.log(data)
             dispatch(addUser(data))
-            navigate("/")
+            navigate('/')
         },
         onError: (error) => {
             toast.error(error.message)
