@@ -20,7 +20,7 @@ export const fetchAllLanguages = async ({ token }) => {
     }
 }
 
-export const fetchLanguageLevels = async ({ token , languageId }) => {
+export const fetchLanguageLevels = async ({ token, languageId }) => {
     try {
         const { data } = await axios(
             `http://127.0.0.1:8000/api/app/language-levels?languageId=${languageId}`,
@@ -40,10 +40,10 @@ export const fetchLanguageLevels = async ({ token , languageId }) => {
     }
 }
 
-export const fetchLanguagesChapters = async ({ token }) => {
+export const fetchLanguagesChapters = async ({ token, languageLevelId }) => {
     try {
         const { data } = await axios(
-            'http://127.0.0.1:8000/api/app/language-chapters',
+            `http://127.0.0.1:8000/api/app/language-chapters?languageLevelId=${languageLevelId}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

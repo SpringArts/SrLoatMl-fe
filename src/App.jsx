@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast'
 import Error from './pages/Error/Error'
 import SelectLanguage from './pages/Language/SelectLanguage'
 import LanguageLevels from './pages/Levels/LanguageLevels'
+import Chapter from './pages/chapters/Chapter'
 
 const App = () => {
     return (
@@ -22,6 +23,10 @@ const App = () => {
                     <Route
                         path='/language-levels/:languageId'
                         element={<LanguageLevels />}
+                    />
+                    <Route
+                        path='/language-chapters/:languageLevelId'
+                        element={<Chapter />}
                     />
                 </Route>
 

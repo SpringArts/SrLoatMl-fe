@@ -20,7 +20,7 @@ const languageSlice = createSlice({
             state.languageLevels = payload
         },
         addLanguageChatpers: (state, { payload }) => {
-            state.languageChatpers = payload
+            state.languageChapters = payload
         },
         addSelectedLanguage: (state, { payload }) => {
             state.selectedLanguage = payload

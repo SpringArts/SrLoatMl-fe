@@ -1,9 +1,14 @@
 import axios from 'axios'
 
-export const fetchAllQuestions = async ({ token }) => {
+export const fetchAllQuestions = async ({
+    token,
+    page,
+    languageLevelId,
+    languageChapterId
+}) => {
     try {
         const { data } = await axios.get(
-            'http://127.0.0.1:8000/api/app/words',
+            `http://127.0.0.1:8000/api/app/words?page=${page}&languageLevelId=${languageLevelId}&languageChapterId=${languageChapterId}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

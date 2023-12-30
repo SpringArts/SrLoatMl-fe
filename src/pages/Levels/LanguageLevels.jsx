@@ -8,38 +8,40 @@ import { addLanguageLevel } from '../../store/reducers/languageReducer'
 
 const LanguageLevels = () => {
     const { languageId } = useParams()
-    const token = Cookies.get("token")
-    const dispatch = useDispatch();
-    const languageLevels = useSelector(state => state.language.languageLevels)
+    const token = Cookies.get('token')
+    const dispatch = useDispatch()
+    const languageLevels = useSelector((state) => state.language.languageLevels)
 
-    const {data , isError , isLoading , isSuccess} = useQuery({
-        queryFn: () => fetchLanguageLevels({token , languageId}),
-        queryKey: ['language-level', languageId],
+    const { data, isError, isLoading, isSuccess } = useQuery({
+        queryFn: () => fetchLanguageLevels({ token, languageId }),
+        queryKey: ['language-level', languageId]
     })
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(addLanguageLevel(data?.data))
-    },[isLoading])
+    }, [isLoading])
 
-    console.log("levels", languageLevels)
+    console.log('levels', languageLevels)
 
-    return <div className='flex items-center justify-center h-screen mx-auto max-w-7xl'>
-    <div className='p-10 border'>
-        <h3 className=''>Select your language</h3>
-        <ul>
-            {!isLoading &&
-                !isError &&
-                isSuccess &&
-                languageLevels?.map((level, index) => (
-                    <li key={index}>
-                        <Link to={`/language-levels/${level?.id}`}>
-                            {level?.level}
-                        </Link>
-                    </li>
-                ))}
-        </ul>
-    </div>
-</div>
+    return (
+        <div className='flex items-center justify-center h-screen mx-auto max-w-7xl'>
+            <div className='p-10 border'>
+                <h3 className=''>Select your language level</h3>
+                <ul>
+                    {!isLoading &&
+                        !isError &&
+                        isSuccess &&
+                        languageLevels?.map((level, index) => (
+                            <li key={index}>
+                                <Link to={`/language-chapters/${level?.id}`}>
+                                    {level?.level}
+                                </Link>
+                            </li>
+                        ))}
+                </ul>
+            </div>
+        </div>
+    )
 }
 
 export default LanguageLevels
