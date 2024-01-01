@@ -5,6 +5,8 @@ import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addLanguageLevel } from '../../store/reducers/languageReducer'
+import Navbar from '../../components/Navbar'
+import LanguageLevelCard from '../../components/General/LanguageLevelCard'
 
 const LanguageLevels = () => {
     const { languageId } = useParams()
@@ -19,26 +21,24 @@ const LanguageLevels = () => {
 
     useEffect(() => {
         dispatch(addLanguageLevel(data?.data))
-    }, [isLoading])
+    }, [])
 
-    console.log('levels', languageLevels)
 
     return (
-        <div className='flex items-center justify-center h-screen mx-auto max-w-7xl'>
-            <div className='p-10 border'>
-                <h3 className=''>Select your language level</h3>
-                <ul>
-                    {!isLoading &&
-                        !isError &&
-                        isSuccess &&
-                        languageLevels?.map((level, index) => (
-                            <li key={index}>
-                                <Link to={`/language-chapters/${level?.id}`}>
-                                    {level?.level}
-                                </Link>
-                            </li>
-                        ))}
-                </ul>
+        <div className='flex items-center pt-10 h-screen mx-auto flex-col'>
+            <Navbar />
+            <div className='flex flex-wrap gap-5 mt-10'>
+                <div className='flex flex-wrap gap-5 mt-10'>
+                    {(!isLoading && !isError && isSuccess && languageLevels && languageLevels.length > 0) ? (
+                        languageLevels.map((level, index) => (
+                            <LanguageLevelCard key={index} level={level} />
+                        ))
+                    ) : (
+                        <div className='flex justify-center'>
+                            <h1 className='text-2xl font-semibold text-gray-600'>No Chapters found</h1>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     )

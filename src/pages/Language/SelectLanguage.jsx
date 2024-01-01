@@ -6,6 +6,8 @@ import { fetchAllLanguages } from '../../services/Language/language'
 import toast from 'react-hot-toast'
 import { addLanguages } from '../../store/reducers/languageReducer'
 import { useEffect } from 'react'
+import Navbar from '../../components/Navbar'
+import LanguageCard from '../../components/General/LanguageCard'
 
 const SelectLanguage = () => {
     const languages = useSelector((state) => state.language.languages)
@@ -22,23 +24,26 @@ const SelectLanguage = () => {
     }
 
     return (
-        <div className='flex items-center justify-center h-screen mx-auto max-w-7xl'>
-            <div className='p-10 border'>
-                <h3 className=''>Select your language</h3>
-                <ul>
-                    {!isLoading &&
-                        !isError &&
-                        isSuccess &&
+        <div>
+            <div className='flex items-center pt-10 h-screen mx-auto flex-col'>
+                <Navbar />
+                {/* Language selection */}
+                <div className='flex flex-wrap gap-5 mt-10'>
+                    {!isLoading && !isError && isSuccess && languages.length > 0 ? (
                         languages.map((language, index) => (
-                            <li key={index}>
-                                <Link to={`/language-levels/${language.id}`}>
-                                    {language.name}
-                                </Link>
-                            </li>
-                        ))}
-                </ul>
+                            <LanguageCard key={index} language={language} />
+                        ))
+                    ) : (
+                        <div className='flex justify-center'>
+                            <h1 className='text-2xl font-semibold text-gray-600'>No languages found</h1>
+                        </div>
+                    )}
+                </div>
+
+
             </div>
         </div>
+
     )
 }
 
