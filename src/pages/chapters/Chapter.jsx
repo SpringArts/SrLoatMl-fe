@@ -5,6 +5,8 @@ import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addLanguageChatpers } from '../../store/reducers/languageReducer'
+import LanguageChapterCard from '../../components/General/LanguageChapterCard'
+import Navbar from '../../components/Navbar'
 
 const Chapter = () => {
     const { languageLevelId } = useParams()
@@ -29,23 +31,20 @@ const Chapter = () => {
     console.log(languageChapters)
 
     return (
-        <div className='flex items-center justify-center h-screen mx-auto max-w-7xl'>
-            <div className='p-10 border'>
-                <h3 className=''>Select your Chapters</h3>
-                <ul>
-                    {!isLoading &&
-                        !isError &&
-                        isSuccess &&
-                        languageChapters?.map((language, index) => (
-                            <li key={index}>
-                                <Link
-                                    to={`/q&a?languageLevelId=${languageLevelId}&languageChapterId=${language.id}`}
-                                >
-                                    {language.chapter}
-                                </Link>
-                            </li>
-                        ))}
-                </ul>
+        <div className='flex items-center pt-10 h-screen mx-auto flex-col'>
+            <Navbar />
+            <div className='flex flex-wrap gap-5 mt-10'>
+                <div className='flex flex-wrap gap-5 mt-10'>
+                    {(!isLoading && !isError && isSuccess && languageChapters && languageChapters.length > 0) ? (
+                        languageChapters.map((language, index) => (
+                            <LanguageChapterCard key={index} language={language} languageLevelId={languageLevelId} />
+                        ))
+                    ) : (
+                        <div className='flex justify-center'>
+                            <h1 className='text-2xl font-semibold text-gray-600'>No Kanji found</h1>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     )
