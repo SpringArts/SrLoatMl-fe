@@ -6,7 +6,7 @@ import { login } from '../../services/auth/users'
 import { addUser } from '../../store/reducers/userReducer'
 import toast from 'react-hot-toast'
 import { Facebook, Github, Instagram, Mail } from 'lucide-react';
-
+import axios from 'axios'
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -45,6 +45,16 @@ export default function Login() {
         mutate({ email, password })
     }
 
+    const handleOauth = async (provider) => {
+        try {
+            const response = await axios.get(`process.env.REACT_APP_API_URL${provider}`);
+            window.location.href = response.data.redirect; // Redirect to authentication provider
+        } catch (error) {
+            console.error('Authentication error:', error);
+        }
+    };
+
+
     return (
         <>
             <div className='flex justify-center items-center mx-auto min-h-screen'>
@@ -55,7 +65,6 @@ export default function Login() {
                         </h1>
                     </div>
                     <form
-                        onSubmit={handleSubmit}
                         className='max-w-md mt-8 mb-0 space-y-6'
                     >
                         <div>
@@ -98,7 +107,7 @@ export default function Login() {
                                     Sign in
                                 </button>
                             ) : (
-                                <button type="button" class="min-w-full px-5 py-3 text-sm font-medium text-white bg-black hover:bg-gray-700 rounded-lg flex items-center justify-center" disabled>
+                                <button type="button" onSubmit={handleSubmit} class="min-w-full px-5 py-3 text-sm font-medium text-white bg-black hover:bg-gray-700 rounded-lg flex items-center justify-center" disabled>
                                     <svg class="animate-spin h-5 w-5 mr-3 border-t-2 border-b-2 border-white rounded-full" viewBox="0 0 24 24"></svg>
                                     Processing...
                                 </button>
@@ -106,33 +115,25 @@ export default function Login() {
                             }
 
                         </div>
-                        <div className='flex flex-row justify-center gap-7'>
-                            <span className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
-                                <Link to="/auth/{provider}">
-                                    <Facebook className=' text-white' />
-                                </Link>
-                            </span>
-                            <span className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
-                                <a
-                                    className="login-link"
-                                    href='http://localhost:5173/auth/github'
-
-                                >
-                                    <Github className=' text-white' />
-                                </a>
-                                {/* // <a href="/auth/github">
-                                // </a> */}
-                            </span>
-                            <span className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
-                                <Instagram className=' text-white' />
-                            </span>
-                            <span className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
-                                <Link to="/auth/gmail">
-                                    <Mail className=' text-white' />
-                                </Link>
-                            </span>
-                        </div>
                     </form>
+                    <div className='flex flex-row justify-center gap-7 mt-5'>
+
+                        <button onClick={() => handleOauth('facebook')} className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
+                            <Facebook className=' text-white' />
+                        </button>
+
+                        <button onClick={() => handleOauth('github')} className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
+                            <Github className=' text-white' />
+                        </button>
+
+                        <button onClick={() => handleOauth('instragram')} className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
+                            <Instagram className=' text-white' />
+                        </button>
+                        <button onClick={() => handleOauth('gmail')} className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
+                            <Mail className=' text-white' />
+                        </button>
+                    </div>
+
                 </div >
             </div >
         </>
