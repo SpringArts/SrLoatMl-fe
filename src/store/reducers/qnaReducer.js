@@ -51,8 +51,8 @@ const qnaSlice = createSlice({
                     (_, index) => index !== randomIndex
                 )
             }else{
-                alert("Good Job!")
-                location.href = "/"
+                // alert("Good Job!")
+                // location.href = "/"
             }
         }
     }

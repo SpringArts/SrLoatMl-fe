@@ -20,7 +20,7 @@ const TimeCounter = ({ seconds }) => {
         }
     }, [countDown])
 
-    return <div>TimeCounter : {countDown}</div>
+    return <div className='inline-block pl-3 text-center font-semibold'>TimeCounter : {countDown}</div>
 }
 
 export default TimeCounter

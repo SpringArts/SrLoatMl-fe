@@ -1,6 +1,6 @@
 
 import { Home, MenuSquare, Mail, CircleUserRound } from 'lucide-react';
-
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -20,40 +20,40 @@ const Navbar = () => {
             <div class="hidden sm:block">
                 <div class="border-b border-gray-200">
                     <nav class="-mb-px flex gap-6" aria-label="Tabs">
-                        <a
-                            href="#"
+                        <Link
+                            to="/"
                             class="inline-flex shrink-0 items-center gap-2 border-b-2 border-sky-500 px-1 pb-4 text-sm font-medium text-sky-600"
                         >
                             <Home size={24} />
                             Home
-                        </a>
+                        </Link>
 
-                        <a
-                            href="#"
+                        <Link
+                            to="/about-us"
                             class="inline-flex shrink-0 items-center gap-2 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                         >
                             <MenuSquare size={24} />
 
                             About Us
-                        </a>
+                        </Link>
 
-                        <a
-                            href="#"
+                        <Link
+                            to="/contact-us"
                             class="inline-flex shrink-0 items-center gap-2 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                         >
                             <Mail size={24} />
 
                             Contact Us
-                        </a>
+                        </Link>
 
-                        <a
-                            href="#"
+                        <Link
+                            to="#"
                             class="inline-flex shrink-0 items-center gap-2 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                         >
                             <CircleUserRound size={24} />
 
                             Profile
-                        </a>
+                        </Link>
                     </nav>
                 </div>
             </div>

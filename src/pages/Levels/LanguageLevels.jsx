@@ -21,7 +21,7 @@ const LanguageLevels = () => {
 
     useEffect(() => {
         dispatch(addLanguageLevel(data?.data))
-    }, [])
+    }, [isLoading])
 
 
     return (
