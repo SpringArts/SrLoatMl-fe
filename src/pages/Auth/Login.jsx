@@ -113,9 +113,15 @@ export default function Login() {
                                 </Link>
                             </span>
                             <span className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
-                                <Link to="/auth/github">
+                                <a
+                                    className="login-link"
+                                    href='http://localhost:5173/auth/github'
+
+                                >
                                     <Github className=' text-white' />
-                                </Link>
+                                </a>
+                                {/* // <a href="/auth/github">
+                                // </a> */}
                             </span>
                             <span className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
                                 <Instagram className=' text-white' />
