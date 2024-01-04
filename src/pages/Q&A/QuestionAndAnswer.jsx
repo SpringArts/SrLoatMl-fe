@@ -7,7 +7,8 @@ import { fetchAllQuestions } from '../../services/QNA/qna'
 import { useEffect, useState } from 'react'
 import {
     addQuestions,
-    getRandomQuestion
+    getRandomQuestion,
+    resetAnsweredQuestions
 } from '../../store/reducers/qnaReducer'
 import { useSearchParams } from 'react-router-dom'
 import { useGetWordsQuery } from '../../services/QNA/qnaApi'
@@ -23,7 +24,7 @@ const QuestionAndAnswer = () => {
     const dispatch = useDispatch()
     const token = Cookies.get('token')
 
-    const { data, isSuccess, isLoading } = useGetWordsQuery({
+    const { data, isSuccess, isLoading , refetch } = useGetWordsQuery({
         token,
         page,
         languageLevelId,
@@ -40,9 +41,20 @@ const QuestionAndAnswer = () => {
 
     useEffect(() => {
         dispatch(addQuestions(data?.data))
-    }, [isSuccess, isLoading])
+    }, [isSuccess, isLoading , page])
+
+    useEffect(()=> {
+        refetch();
+        // dispatch(resetAnsweredQuestions())
+        console.log("page number changed to " + page)
+    }, [page])
+
+    if(data?.meta?.totalPages === page && questions?.length === 0){
+        alert("No questions")
+    }
 
     console.log('Questions ', questions)
+    console.log('Total pages', data?.meta?.totalPages)
     // console.log('Random Question ', randomQuestion)
     console.log('Ansered Question ', answeredQuestion)
 
@@ -54,7 +66,7 @@ const QuestionAndAnswer = () => {
         <div className='flex items-center justify-center h-screen mx-auto max-w-7xl'>
             <div>
                 <Marks />
-                <Question />
+                <Question setPage={setPage} page={page} meta={data?.meta} />
             </div>
         </div>
     )
