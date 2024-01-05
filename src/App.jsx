@@ -9,13 +9,16 @@ import Error from './pages/Error/Error'
 import SelectLanguage from './pages/Language/SelectLanguage'
 import LanguageLevels from './pages/Levels/LanguageLevels'
 import Chapter from './pages/chapters/Chapter'
+import AboutUs from './pages/AboutUs/AboutUs'
+import ContactUs from './pages/ContactUs/ContactUs'
 
 const App = () => {
     return (
         <div className='font-Opensans'>
             <Routes>
                 <Route path='/' element={<Home />} />
-
+                <Route path='/about-us' element={<AboutUs />} />
+                <Route path='/contact-us' element={<ContactUs />} />
                 <Route element={<PrivateRoute />}>
                     {/* the route that need authentication are writeen in here */}
                     <Route path='/q&a' element={<QuestionAndAnswer />} />

@@ -12,6 +12,7 @@ import {
 } from '../../store/reducers/qnaReducer'
 import { useSearchParams } from 'react-router-dom'
 import { useGetWordsQuery } from '../../services/QNA/qnaApi'
+import Navbar from '../../components/Navbar'
 
 const QuestionAndAnswer = () => {
     const params = new URLSearchParams(document.location.search)
@@ -63,8 +64,9 @@ const QuestionAndAnswer = () => {
     }, [questions?.length > 0])
 
     return (
-        <div className='flex items-center justify-center h-screen mx-auto max-w-7xl'>
-            <div>
+        <div className='flex items-center pt-10 h-screen mx-auto flex-col'>
+            <Navbar />
+            <div className='mt-20'>
                 <Marks />
                 <Question setPage={setPage} page={page} meta={data?.meta} />
             </div>
