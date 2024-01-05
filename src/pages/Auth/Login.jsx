@@ -65,7 +65,7 @@ export default function Login() {
                         </h1>
                     </div>
                     <form
-                        className='max-w-md mt-8 mb-0 space-y-6'
+                        className='max-w-md mt-8 mb-0 space-y-6' onSubmit={handleSubmit}
                     >
                         <div>
                             <label htmlFor='email' className='sr-only'>
