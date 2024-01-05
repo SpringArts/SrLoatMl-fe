@@ -24,3 +24,17 @@ export const fetchAllQuestions = async ({
         throw new Error(error.message)
     }
 }
+
+
+export const questionToBackend = async({ answeredQuestion, token}) => {
+    const { data } = await axios.post("http://127.0.0.1:8000/api/app/exam", {
+      data: answeredQuestion
+    }, {
+      headers: {
+        "Content-Type" : "application/json",
+        "Accept" : "application/json",
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+    return data;
+  }
