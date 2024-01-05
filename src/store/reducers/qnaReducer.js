@@ -54,6 +54,9 @@ const qnaSlice = createSlice({
                 // alert("Good Job!")
                 // location.href = "/"
             }
+        },
+        resetAnsweredQuestions: (state) => {
+            state.answeredQuestions = [];
         }
     }
 })
@@ -63,6 +66,7 @@ export const {
     addAnsweredQuestions,
     check,
     getRandomQuestion,
-    changeIsOver
+    changeIsOver,
+    resetAnsweredQuestions
 } = qnaSlice.actions
 export default qnaSlice.reducer
