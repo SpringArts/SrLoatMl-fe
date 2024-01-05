@@ -47,8 +47,8 @@ export default function Login() {
 
     const handleOauth = async (provider) => {
         try {
-            const response = await axios.get(`process.env.REACT_APP_API_URL${provider}`);
-            window.location.href = response.data.redirect; // Redirect to authentication provider
+            window.location.href = `http://127.0.0.1:8000/api/auth/${provider}`;
+
         } catch (error) {
             console.error('Authentication error:', error);
         }
@@ -129,7 +129,7 @@ export default function Login() {
                         <button onClick={() => handleOauth('instragram')} className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
                             <Instagram className=' text-white' />
                         </button>
-                        <button onClick={() => handleOauth('gmail')} className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
+                        <button onClick={() => handleOauth('google')} className='border rounded-full p-2 bg-black hover:bg-gray-800 hover:cursor-pointer'>
                             <Mail className=' text-white' />
                         </button>
                     </div>
