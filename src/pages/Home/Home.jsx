@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar"
 import Welcome from '../../assets/images/LandingPage.png'
+import { Link } from "react-router-dom"
 
 const Home = () => {
 
@@ -25,12 +26,12 @@ const Home = () => {
                                     Are you ready to test your skills and knowledge? Join us in this exciting exam challenge where you can showcase your abilities and compete with others. It's an opportunity to learn, grow, and succeed!
                                 </p>
 
-                                <a
-                                    href="/languages"
+                                <Link
+                                    to="/languages"
                                     className="mt-8 inline-block rounded bg-gray-700 px-8 py-3 text-sm font-medium text-white transform transition hover:bg-gray-800 hover:scale-105 focus:outline-none focus:ring focus:ring-yellow-400"
                                 >
                                     Let's Challenge
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
