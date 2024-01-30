@@ -12,6 +12,10 @@ const userFromCookie = Cookies.get('user')
 const initialState = {
     user: {
         user: userFromCookie
+    },
+    qna : {
+        answeredQuestions : [],
+        marks: 0
     }
 }
 

@@ -6,7 +6,7 @@ export const qnaApi = createApi({
     endpoints: (builder) => ({
         getWords: builder.query({
             query: ({ token, page, languageLevelId, languageChapterId }) => ({
-                url: `/words?page=${page}&languageLevelId=${languageLevelId}&languageChapterId=${languageChapterId}`,
+                url: `/words?limit=10&page=${page}&languageLevelId=${languageLevelId}&languageChapterId=${languageChapterId}`,
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
